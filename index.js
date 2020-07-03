@@ -69,7 +69,7 @@ app.get("/api/all", (req, res) => {
 
 var jsonArr = [];
 app.get("/api/geojson", (req, res) => {
-  fetch('http://127.0.0.1:'+ process.env.PORT +'/api/all')
+  fetch('/api/all')
     .then(resp => resp.json())
     .then(json => json.forEach(element => {
       let tle = element.tleArr;
@@ -103,5 +103,19 @@ app.get("/api/geojson", (req, res) => {
   jsonArr = []
 });
 
+var globeArr = [];
+app.get("/api/globe", (req, res) => {
+  fetch('/api/all')
+    .then(resp => resp.json())
+    .then(json => json.forEach(element => {
+      let info = getSatelliteInfo(element.tleArr);
+      jsonArr.push(info.lat, info.lng, info.range)
+      //console.log(jsonArr)
+    }))
+  //res.send(jsonArr)
+  res.send(globeArr)
+  //res.send(jsonArr)
+  globeArr = []
+});
 
 app.listen(process.env.PORT);
