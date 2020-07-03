@@ -24,10 +24,6 @@ app.use(function(req, res, next) {
 
 var DATA_URL = "http://celestrak.com/NORAD/elements/starlink.txt";
 
-var set = 'ISS (ZARYA)\n' +
-  '1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  2927\n' +
-  '2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537'
-
 app.post("/api/one", (req, res) => {
     const satellite = {
         name: req.body.name,
@@ -58,26 +54,19 @@ app.get("/api/all", (req, res) => {
           .once( 'error', exit )
           .on( 'data', function( tle ) {
             count++
-            //tles.push({
-            //  name: tle.name, 
-            //  class: tle.class,
-            //})
-            //const tleArr = [tle.tle1, tle.tle2];
-            //const latLonObj = getLatLngObj(tle.tleArr);
             tles.push(tle)
           })
           .once( 'finish', function() {
             var time = Date.now() - start
             var ops = count / ( time / 1000 )
             res.send(tles)
-            //console.log( 'Parser:', count, 'TLEs,', time + 'ms,', ops.toFixed(), 'op/s' )
+            console.log( 'Parser:', count, 'TLEs,', time + 'ms,', ops.toFixed(), 'op/s' )
           })
       
     })
 });
 
 var jsonArr = [];
-var count = 0;
 app.get("/api/geojson", (req, res) => {
   fetch('http://127.0.0.1:'+ process.env.PORT +'/api/all')
     .then(resp => resp.json())
@@ -113,7 +102,6 @@ app.get("/api/geojson", (req, res) => {
   //res.send(jsonArr)
   console.log(count)
   jsonArr = []
-  count = 0;
 });
 
 
