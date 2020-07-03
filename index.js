@@ -90,7 +90,7 @@ app.get("/api/geojson", (req, res) => {
         anomaly: element.anomaly,
         revolution: element.revolution,
         tleArray: element.tleArr,
-        latlng: getLatLngObj(tleArray)
+        latlng: getLatLngObj(element.tleArr)
       })
       //console.log(jsonArr)
     }))
