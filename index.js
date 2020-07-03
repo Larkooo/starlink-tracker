@@ -79,7 +79,7 @@ app.get("/api/all", (req, res) => {
 var jsonArr = [];
 var count = 0;
 app.get("/api/geojson", (req, res) => {
-  fetch('http://127.0.0.1:3000/api/all')
+  fetch('http://127.0.0.1:'+ process.env.PORT +'/api/all')
     .then(resp => resp.json())
     .then(json => json.forEach(element => {
       count++
