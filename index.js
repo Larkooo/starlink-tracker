@@ -81,8 +81,8 @@ app.get("/api/geojson", (req, res) => {
         perigee: element.perigee,
         anomaly: element.anomaly,
         revolution: element.revolution,
-        tleArray: element.tleArray,
-        latlng: getLatLngObj(element.tleArray)
+        tleArray: element.tleArr,
+        latlng: getLatLngObj(element.tleArr)
       })
       //console.log(jsonArr)
     }))
