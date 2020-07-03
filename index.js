@@ -83,6 +83,7 @@ app.get("/api/geojson", (req, res) => {
     .then(resp => resp.json())
     .then(json => json.forEach(element => {
       count++
+      let tle = element.tleArr;
       jsonArr.push({
         name: element.name,
         norad: element.number,
@@ -94,13 +95,13 @@ app.get("/api/geojson", (req, res) => {
         perigee: element.perigee,
         anomaly: element.anomaly,
         revolution: element.revolution,
-        tleArray: element.tleArr,
-        latlng: getLatLngObj(element.tleArr),
-        year: getEpochYear(element.tleArr),
-        day: getEpochDay(element.tleArr),
-        timestamp: getEpochTimestamp(element.tleArr),
-        orbitmodel: getOrbitModel(element.tleArr),
-        designator: getIntDesignatorYear(element.tleArr)
+        tleArray: tle,
+        latlng: getLatLngObj(tle),
+        year: getEpochYear(tle),
+        day: getEpochDay(tle),
+        timestamp: getEpochTimestamp(tle),
+        orbitmodel: getOrbitModel(tle),
+        designator: getIntDesignatorYear(tle)
       })
       //console.log(jsonArr)
     }))
