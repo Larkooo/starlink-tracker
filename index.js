@@ -109,7 +109,7 @@ app.get("/api/globe", (req, res) => {
     .then(resp => resp.json())
     .then(json => json.forEach(element => {
       let info = getSatelliteInfo(element.tleArr);
-      globeArr.push(info.lat, info.lng, info.height / 800)
+      globeArr.push(info.lat, info.lng, info.height / 1600)
       //console.log(jsonArr)
     }))
   //res.send(jsonArr)
