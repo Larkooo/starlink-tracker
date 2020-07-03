@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const GeoJSON = require('geojson');
 const { getLatLngObj } = require("tle.js/dist/tlejs.cjs");
 
-var TLE = require( 'tle' )
+var TLE = require( 'tle-modified' )
 var http = require('http');
 const app = express();
 
