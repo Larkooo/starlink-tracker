@@ -94,7 +94,7 @@ app.get("/api/geojson", (req, res) => {
       //console.log(jsonArr)
     }))
   //res.send(jsonArr)
-  res.send(GeoJSON.parse(jsonArr, {Point: [element.latlng.lat, element.latlng.lng]}))
+  res.send(GeoJSON.parse(jsonArr, {Point: ['2423.235325', '535.235235']}))
   //res.send(jsonArr)
   console.log(count)
   jsonArr = []
