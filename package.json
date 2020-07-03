@@ -13,7 +13,7 @@
     "geojson": "^0.5.0",
     "http": "0.0.1-security",
     "node-fetch": "^2.6.0",
-    "tle": "^2.0.0",
+    "tle-modified": "github:Larko00/tle-modified",
     "tle.js": "^4.1.0"
   }
 }
