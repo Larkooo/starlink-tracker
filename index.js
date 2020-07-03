@@ -88,7 +88,6 @@ app.get("/api/geojson", (req, res) => {
         revolution: element.revolution,
         tleArray: tle,
         date: element.date,
-        latlng: getLatLngObj(tle),
         year: getEpochYear(tle),
         day: getEpochDay(tle),
         timestamp: getEpochTimestamp(tle),
@@ -99,7 +98,7 @@ app.get("/api/geojson", (req, res) => {
       //console.log(jsonArr)
     }))
   //res.send(jsonArr)
-  res.send(GeoJSON.parse(jsonArr, {Point: ['latlng.lat', 'latlng.lng']}))
+  res.send(GeoJSON.parse(jsonArr, {Point: ['info.lat', 'info.lng']}))
   //res.send(jsonArr)
   jsonArr = []
 });
