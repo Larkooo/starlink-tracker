@@ -98,6 +98,7 @@ app.get("/api/geojson", (req, res) => {
         anomaly: element.anomaly,
         revolution: element.revolution,
         tleArray: tle,
+        date: element.date,
         latlng: getLatLngObj(tle),
         year: getEpochYear(tle),
         day: getEpochDay(tle),
