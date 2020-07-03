@@ -89,13 +89,12 @@ app.get("/api/geojson", (req, res) => {
         perigee: element.perigee,
         anomaly: element.anomaly,
         revolution: element.revolution,
-        tleArray: element.tleArr,
-        latlng: getLatLngObj(element.tleArr)
+        tleArray: element.tleArr
       })
       //console.log(jsonArr)
     }))
   //res.send(jsonArr)
-  res.send(GeoJSON.parse(jsonArr, {Point: ['lat', 'lng']}))
+  res.send(GeoJSON.parse(jsonArr, {Point: [element.latlng.lat, element.latlng.lng]}))
   //res.send(jsonArr)
   console.log(count)
   jsonArr = []
