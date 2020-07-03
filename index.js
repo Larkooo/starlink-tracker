@@ -71,7 +71,6 @@ app.get("/api/geojson", (req, res) => {
   fetch('http://127.0.0.1:'+ process.env.PORT +'/api/all')
     .then(resp => resp.json())
     .then(json => json.forEach(element => {
-      count++
       let tle = element.tleArr;
       jsonArr.push({
         name: element.name,
@@ -100,7 +99,6 @@ app.get("/api/geojson", (req, res) => {
   //res.send(jsonArr)
   res.send(GeoJSON.parse(jsonArr, {Point: ['latlng.lat', 'latlng.lng']}))
   //res.send(jsonArr)
-  console.log(count)
   jsonArr = []
 });
 
