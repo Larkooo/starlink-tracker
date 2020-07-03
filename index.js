@@ -51,20 +51,7 @@ app.get("/api/all", (req, res) => {
             //})
             //const tleArr = [tle.tle1, tle.tle2];
             //const latLonObj = getLatLngObj(tle.tleArr);
-            tles.push({
-              name: tle.name,
-              norad: tle.number,
-              class: tle.class,
-              id: tle.id,
-              inclination: tle.inclination,
-              ascension: tle.ascension,
-              eccentricity: tle.eccentricity,
-              perigee: tle.perigee,
-              anomaly: tle.anomaly,
-              revolution: tle.revolution,
-              tleArray: tle.tleArr,
-              //latlng: getLatLngObj(tle.tleArr)
-            })
+            tles.push(tle)
           })
           .once( 'finish', function() {
             var time = Date.now() - start
