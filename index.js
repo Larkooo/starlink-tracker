@@ -108,4 +108,4 @@ app.get("/api/geojson", (req, res) => {
 });
 
 
-app.listen(process.env.port);
+app.listen(process.env.PORT);
