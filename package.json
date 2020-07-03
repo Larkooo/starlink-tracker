@@ -4,7 +4,7 @@
   "description": "Coded like shit",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "Aymen DJ",
   "license": "ISC",
@@ -13,7 +13,6 @@
     "geojson": "^0.5.0",
     "http": "0.0.1-security",
     "node-fetch": "^2.6.0",
-    "nodemon": "^2.0.4",
     "tle": "^2.0.0",
     "tle.js": "^4.1.0"
   }
