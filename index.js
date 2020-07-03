@@ -90,6 +90,8 @@ app.get("/api/geojson", (req, res) => {
         class: element.class,
         id: element.id,
         inclination: element.inclination,
+        motion: element.motion,
+        drag: element.drag,
         ascension: element.ascension,
         eccentricity: element.eccentricity,
         perigee: element.perigee,
