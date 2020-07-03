@@ -2,6 +2,11 @@ const express = require("express");
 const fetch = require('node-fetch');
 const GeoJSON = require('geojson');
 const { getLatLngObj } = require("tle.js/dist/tlejs.cjs");
+const { getEpochYear } = require("tle.js/dist/tlejs.cjs");
+const { getEpochDay } = require("tle.js/dist/tlejs.cjs");
+const { getEpochTimestamp } = require("tle.js/dist/tlejs.cjs");
+const { getOrbitModel } = require("tle.js/dist/tlejs.cjs");
+const { getIntDesignatorYear } = require("tle.js/dist/tlejs.cjs");
 
 var TLE = require( 'tle-modified' )
 var http = require('http');
@@ -90,7 +95,12 @@ app.get("/api/geojson", (req, res) => {
         anomaly: element.anomaly,
         revolution: element.revolution,
         tleArray: element.tleArr,
-        latlng: getLatLngObj(element.tleArr)
+        latlng: getLatLngObj(element.tleArr),
+        year: getEpochYear(element.tleArr),
+        day: getEpochDay(element.tleArr),
+        timestamp: getEpochTimestamp(element.tleArr),
+        orbitmodel: getOrbitModel(element.tleArr),
+        designator: getIntDesignatorYear(element.tleArr)
       })
       //console.log(jsonArr)
     }))
