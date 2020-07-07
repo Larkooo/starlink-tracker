@@ -9,5 +9,11 @@
   "author": "Aymen DJ",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
+    "geojson": "^0.5.0",
+    "http": "0.0.1-security",
+    "node-fetch": "^2.6.0",
+    "tle-modified": "github:Larko00/tle-modified",
+    "tle.js": "^4.1.0"
   }
 }
