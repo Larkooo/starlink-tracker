@@ -9,6 +9,5 @@
   "author": "Aymen DJ",
   "license": "ISC",
   "dependencies": {
-    "tle.js": "^4.1.0"
   }
 }
