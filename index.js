@@ -27,11 +27,6 @@ app.post("/api/one", (req, res) => {
     res.send(tle)
 });
 
-function exit( error ) {
-    console.error( error.stack )
-    process.exit(1)
-}
-
 app.get("/api/all", (req, res) => {
   var req = http.get(DATA_URL, function (response) {
     if (response.statusCode !== 200)
@@ -46,7 +41,6 @@ app.get("/api/all", (req, res) => {
 
     var dt = response
       .pipe(new TLE.Parser())
-      .once("error", exit)
       .on("data", function (tle) {
         count++;
         tles.push(tle);
