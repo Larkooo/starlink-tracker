@@ -48,7 +48,7 @@ app.get("/api/all", (req, res) => {
       .once("finish", function () {
         var time = Date.now() - start;
         var ops = count / (time / 1000);
-        res.send(GeoJSON.parse(tles, {Point: ['info.lat', 'info.lng']}))
+        res.send(GeoJSON.parse(tles, {Point: ['info.lat', 'info.lng'], include: ['name', 'number', 'class', 'id', 'info', 'perigee', 'inclination', 'revolution']}))
         console.log(
           "Parser:",
           count,
