@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json())
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", '*');
   res.header("Access-Control-Allow-Credentials", true);
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -15,40 +15,30 @@ app.use(function(req, res, next) {
   next();
 });
 
-var DATA_URL = "http://celestrak.com/NORAD/elements/starlink.txt";
+const DATA_URL = "http://celestrak.com/NORAD/elements/starlink.txt";
+let data;
 
-app.post("/api/one", (req, res) => {
-    const satellite = {
-        name: req.body.name,
-        tle1: req.body.tle1,
-        tle2: req.body.tle2
-    };
-    var tle = TLE.parse( satellite.name + "\n" + satellite.tle1 + "\n" + satellite.tle2)
-    res.send(tle)
-});
-
-app.get("/api/all", (req, res) => {
-  var req = http.get(DATA_URL, function (response) {
+setInterval(() => http.get(DATA_URL, (response) => {
     if (response.statusCode !== 200)
       return exit(
         new Error(`HTTP ${response.statusCode} ${response.statusMessage}`)
       );
 
-    var start = Date.now();
-    var count = 0;
+    const start = Date.now();
+    let count = 0;
 
-    var tles = [];
+    let tles = [];
 
-    var dt = response
+    response
       .pipe(new TLE.Parser())
-      .on("data", function (tle) {
+      .on("data", (tle) => {
         count++;
         tles.push(tle);
       })
-      .once("finish", function () {
-        var time = Date.now() - start;
-        var ops = count / (time / 1000);
-        res.send(GeoJSON.parse(tles, {Point: ['info.lat', 'info.lng'], include: ['name', 'number', 'class', 'id', 'info', 'perigee', 'inclination', 'revolution']}))
+      .once("finish", () => {
+        const time = Date.now() - start;
+        const ops = count / (time / 1000);
+        data = GeoJSON.parse(tles, {Point: ['info.lat', 'info.lng'], include: ['name', 'number', 'class', 'id', 'info', 'perigee', 'inclination', 'revolution']});
         console.log(
           "Parser:",
           count,
@@ -58,7 +48,10 @@ app.get("/api/all", (req, res) => {
           "op/s"
         );
       });
-  });
+}), 3000);
+
+app.get("/api/all", (req, res) => {
+  res.send(data);
 });
 
 app.listen(process.env.PORT);
