@@ -19,11 +19,6 @@ const DATA_URL = "http://celestrak.com/NORAD/elements/starlink.txt";
 let data;
 
 setInterval(() => http.get(DATA_URL, (response) => {
-    if (response.statusCode !== 200)
-      return exit(
-        new Error(`HTTP ${response.statusCode} ${response.statusMessage}`)
-      );
-
     const start = Date.now();
     let count = 0;
 
